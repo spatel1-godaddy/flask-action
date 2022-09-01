@@ -1,22 +1,33 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
+ 
 name: Python application
-
+ 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-permissions:
-  contents: read
-
+ 
 jobs:
-  build:
-
+  scheduled:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: Setup deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.10.x
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          sql_connstring: ${{ secrets.FLAT_L9CRR1_CONNSTRING }}
+          sql_queryfile: ./fetch_version.sql
+          downloaded_filename: VERSION.JSON
+          # postprocess: ./flat_parser.js
+  build:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.9
@@ -33,6 +44,13 @@ jobs:
     - name: Test with nose
       run: |
         nosetests
-    - name: Flat Data
-      uses: githubocto/flat@v3.3.1
-
+  release:
+    name: Cut version tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+      - uses: kobtea/release-tag-action@master
+        with:
+          force: true

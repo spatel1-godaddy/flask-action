@@ -1,1 +1,1 @@
-SELECT version_name FROM `actions_core`.`versions` LIMIT 1;
+SELECT value FROM apiConfig WHERE name='JENKINS_BULK_EDIT_U_VER';
