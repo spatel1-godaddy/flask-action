@@ -9,6 +9,7 @@ nose = "*"
 
 [dev-packages]
 flake8 = "*"
+pyp2rpm = "*"
 
 [requires]
 python_version = "3.9"
