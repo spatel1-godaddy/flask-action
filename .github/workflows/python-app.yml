@@ -5,9 +5,9 @@ name: Python application
  
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "unstable" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "unstable"]
  
 jobs:
   build:
@@ -35,6 +35,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
-      - uses: dhavalsavalia/release-tag-action@master
+      - uses: spatel1-godaddy/release-tag-action@master
         with:
           force: true
