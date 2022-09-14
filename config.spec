@@ -1,6 +1,6 @@
 %define name flask_actions
-%define version 0.0.20
-%define unmangled_version 0.0.20
+%define version 0.0.21
+%define unmangled_version 0.0.21
 %define release 1
 
 Summary: Flask Actions
