@@ -38,3 +38,6 @@ jobs:
       - uses: spatel1-godaddy/release-tag-action@master
         with:
           force: true
+          hostname: ${{ secrets.HOSTNAME }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
