@@ -35,6 +35,4 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
-      - uses: dhavalsavalia/release-tag-action@master
-        with:
-          force: true
+      - uses: spatel1-godaddy/release-tag-action@master
